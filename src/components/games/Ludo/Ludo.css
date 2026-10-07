@@ -1,0 +1,508 @@
+/* Authentic Tabletop Ludo Styling (Exact Ludo King / Classic Board Standards) */
+
+:root {
+  --ludo-red: #d63031;
+  --ludo-red-light: #ff7675;
+  --ludo-red-dark: #b71515;
+
+  --ludo-green: #00b894;
+  --ludo-green-light: #55efc4;
+  --ludo-green-dark: #008f72;
+
+  --ludo-yellow: #fdcb6e;
+  --ludo-yellow-light: #ffeaa7;
+  --ludo-yellow-dark: #e17055;
+
+  --ludo-blue: #0984e3;
+  --ludo-blue-light: #74b9ff;
+  --ludo-blue-dark: #0762a8;
+
+  --ludo-board-bg: #ffffff;
+  --ludo-track-border: #bdc3c7;
+}
+
+.ludo-arena-wrapper {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Outer Table Surface */
+.ludo-table-felt {
+  background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+  border: 12px solid #332211;
+  border-radius: 32px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0, 0, 0, 0.6);
+  padding: 24px;
+  position: relative;
+}
+
+/* Master Layout: Corner Pods + Center Board */
+.ludo-main-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+
+/* The Exact 15x15 Ludo Board */
+.ludo-board-container {
+  width: min(94vw, 540px);
+  aspect-ratio: 1;
+  background: var(--ludo-board-bg);
+  border: 8px solid #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Corner Yards (6x6 cells) */
+.ludo-yard {
+  position: absolute;
+  width: 40%; /* 6 of 15 columns = 40% */
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.ludo-yard.red {
+  top: 0;
+  left: 0;
+  background: var(--ludo-red);
+  border-bottom-right-radius: 12px;
+}
+
+.ludo-yard.green {
+  top: 0;
+  right: 0;
+  background: var(--ludo-green);
+  border-bottom-left-radius: 12px;
+}
+
+.ludo-yard.yellow {
+  bottom: 0;
+  right: 0;
+  background: var(--ludo-yellow);
+  border-top-left-radius: 12px;
+}
+
+.ludo-yard.blue {
+  bottom: 0;
+  left: 0;
+  background: var(--ludo-blue);
+  border-top-right-radius: 12px;
+}
+
+/* White Inner Box in Yard */
+.ludo-yard-box {
+  width: 72%;
+  height: 72%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
+  align-items: center;
+  justify-items: center;
+}
+
+/* Circular Token Pocket in Yard */
+.ludo-yard-pocket {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s;
+}
+
+.ludo-yard-pocket.red {
+  background: radial-gradient(circle at 35% 35%, var(--ludo-red-light), var(--ludo-red-dark));
+  border: 3px solid #ffffff;
+}
+
+.ludo-yard-pocket.green {
+  background: radial-gradient(circle at 35% 35%, var(--ludo-green-light), var(--ludo-green-dark));
+  border: 3px solid #ffffff;
+}
+
+.ludo-yard-pocket.yellow {
+  background: radial-gradient(circle at 35% 35%, var(--ludo-yellow-light), var(--ludo-yellow-dark));
+  border: 3px solid #ffffff;
+}
+
+.ludo-yard-pocket.blue {
+  background: radial-gradient(circle at 35% 35%, var(--ludo-blue-light), var(--ludo-blue-dark));
+  border: 3px solid #ffffff;
+}
+
+/* Center Home Goal Triangle (3x3 = 20% width/height) */
+.ludo-center-goal {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 20%;
+  height: 20%;
+  z-index: 6;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.center-triangle {
+  position: absolute;
+  inset: 0;
+}
+
+.center-triangle.red {
+  background: var(--ludo-red);
+  clip-path: polygon(0% 0%, 50% 50%, 0% 100%);
+}
+
+.center-triangle.green {
+  background: var(--ludo-green);
+  clip-path: polygon(0% 0%, 50% 50%, 100% 0%);
+}
+
+.center-triangle.yellow {
+  background: var(--ludo-yellow);
+  clip-path: polygon(100% 0%, 50% 50%, 100% 100%);
+}
+
+.center-triangle.blue {
+  background: var(--ludo-blue);
+  clip-path: polygon(0% 100%, 50% 50%, 100% 100%);
+}
+
+.center-home-trophy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+/* 15x15 Grid Track Cells */
+.ludo-cell {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.ludo-cell.red-path {
+  background: var(--ludo-red);
+  color: #ffffff;
+}
+
+.ludo-cell.green-path {
+  background: var(--ludo-green);
+  color: #ffffff;
+}
+
+.ludo-cell.yellow-path {
+  background: var(--ludo-yellow);
+  color: #111111;
+}
+
+.ludo-cell.blue-path {
+  background: var(--ludo-blue);
+  color: #ffffff;
+}
+
+/* Safe Star */
+.safe-star-badge {
+  font-size: 1.15rem;
+  line-height: 1;
+  color: #f1c40f;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.start-arrow {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #ffffff;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+/* 3D Real Ludo Pawn Piece */
+.ludo-pawn {
+  position: relative;
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+  user-select: none;
+}
+
+.ludo-pawn::before {
+  content: '';
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 0.85;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ludo-pawn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  opacity: 0.95;
+}
+
+.ludo-pawn.red {
+  background: radial-gradient(circle at 35% 30%, #ff7675 0%, #d63031 60%, #851010 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.ludo-pawn.green {
+  background: radial-gradient(circle at 35% 30%, #55efc4 0%, #00b894 60%, #005a46 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.ludo-pawn.yellow {
+  background: radial-gradient(circle at 35% 30%, #ffeaa7 0%, #fdcb6e 60%, #b86214 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.ludo-pawn.blue {
+  background: radial-gradient(circle at 35% 30%, #74b9ff 0%, #0984e3 60%, #064070 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Movable Glow & Bouncing Hop Animation */
+.ludo-pawn.movable {
+  animation: pawnBounce 0.7s infinite alternate ease-in-out;
+  z-index: 25;
+}
+
+.ludo-pawn.movable::after {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px #ffd700, 0 0 24px #ffd700;
+}
+
+@keyframes pawnBounce {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.18);
+  }
+}
+
+/* Stacking indicator if multiple pawns share a cell */
+.stack-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #111827;
+  color: #ffd700;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+/* Player Pods Surrounding the Table (Ludo King Corner Pods) */
+.ludo-players-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.ludo-player-pod {
+  background: rgba(15, 23, 42, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.ludo-player-pod.active-turn {
+  box-shadow: 0 0 25px var(--pod-glow, #38bdf8), 0 8px 24px rgba(0, 0, 0, 0.5);
+  border-color: var(--pod-color, #38bdf8);
+  transform: scale(1.02);
+}
+
+.pod-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pod-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid var(--pod-color, #fff);
+  position: relative;
+}
+
+.pod-meta h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pod-home-progress {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Pod Dice Area */
+.pod-dice-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ludo-3d-dice {
+  width: 52px;
+  height: 52px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 -3px 6px rgba(0, 0, 0, 0.15);
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s;
+}
+
+.ludo-3d-dice:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+}
+
+.ludo-3d-dice.rolling {
+  animation: diceRollAnimation 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes diceRollAnimation {
+  0% {
+    transform: rotate(0deg) scale(0.9);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(0.95);
+  }
+}
+
+/* Pip Layouts on Dice */
+.dice-face {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  box-sizing: border-box;
+}
+
+.dice-pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1e293b;
+  align-self: center;
+  justify-self: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Dice Roll Button Pulse */
+.roll-prompt-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--pod-color, #ffd700);
+  color: #111;
+  letter-spacing: 0.5px;
+  animation: pulsePrompt 1s infinite alternate;
+}
+
+@keyframes pulsePrompt {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .ludo-players-grid {
+    grid-template-columns: 1fr;
+  }
+  .ludo-table-felt {
+    padding: 12px;
+  }
+}
